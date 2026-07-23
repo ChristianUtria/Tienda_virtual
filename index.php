@@ -44,7 +44,7 @@ $resultado = mysqli_query($conexion,$sql);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<title>Tienda Online</title>
+<title>Shop Online</title>
 
 
 <link rel="stylesheet" href="assets/css/estilos_inicio.css">
