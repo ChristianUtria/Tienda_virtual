@@ -32,85 +32,25 @@ $ingresos = mysqli_fetch_assoc(
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Dashboard</title>
 
-<style>
-
-body{
-
-    font-family:Arial;
-    background:#f4f4f4;
-    margin:30px;
-
-}
-
-h1{
-
-    margin-bottom:30px;
-
-}
-
-.contenedor{
-
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-
-}
-
-.tarjeta{
-
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.15);
-    text-align:center;
-
-}
-
-.numero{
-
-    font-size:40px;
-    font-weight:bold;
-    margin-top:15px;
-
-}
-
-.menu{
-
-    margin-top:40px;
-
-}
-
-.menu a{
-
-    text-decoration:none;
-    margin-right:10px;
-
-}
-
-button{
-
-    padding:10px 20px;
-    cursor:pointer;
-
-}
-
-</style>
+<link rel="stylesheet" href="../assets/css/estilos_panel_admin.css">
 
 </head>
 
 <body>
 
-<h1>Panel Administrador</h1>
+<h1><i class="bi bi-speedometer2"></i> Panel Administrador</h1>
 
-<div class="contenedor">
+<div class="contenedor_tarjetas">
 
-<div class="tarjeta">
+<div class="tarjeta_resumen">
 
-<h2>Productos</h2>
+<h2><i class="bi bi-box-seam"></i> Productos</h2>
 
-<div class="numero">
+<div class="numero_total">
 
 <?php echo $productos["total"]; ?>
 
@@ -118,11 +58,11 @@ button{
 
 </div>
 
-<div class="tarjeta">
+<div class="tarjeta_resumen">
 
-<h2>Categorías</h2>
+<h2><i class="bi bi-tag"></i> Categorías</h2>
 
-<div class="numero">
+<div class="numero_total">
 
 <?php echo $categorias["total"]; ?>
 
@@ -130,11 +70,11 @@ button{
 
 </div>
 
-<div class="tarjeta">
+<div class="tarjeta_resumen">
 
-<h2>Usuarios</h2>
+<h2><i class="bi bi-people"></i> Usuarios</h2>
 
-<div class="numero">
+<div class="numero_total">
 
 <?php echo $usuarios["total"]; ?>
 
@@ -142,11 +82,11 @@ button{
 
 </div>
 
-<div class="tarjeta">
+<div class="tarjeta_resumen">
 
-<h2>Ventas</h2>
+<h2><i class="bi bi-cash-stack"></i> Ventas</h2>
 
-<div class="numero">
+<div class="numero_total">
 
 <?php echo $ventas["total"]; ?>
 
@@ -154,11 +94,11 @@ button{
 
 </div>
 
-<div class="tarjeta">
+<div class="tarjeta_resumen">
 
-<h2>Ingresos</h2>
+<h2><i class="bi bi-currency-dollar"></i> Ingresos</h2>
 
-<div class="numero">
+<div class="numero_total">
 
 $<?php echo number_format($ingresos["total"]); ?>
 
@@ -168,22 +108,26 @@ $<?php echo number_format($ingresos["total"]); ?>
 
 </div>
 
-<div class="menu">
+<div class="menu_opciones">
 
 <a href="categorias/listar.php">
-<button>Categorías</button>
+<button><i class="bi bi-tag"></i> Categorías</button>
 </a>
 
 <a href="productos/listar.php">
-<button>Productos</button>
+<button><i class="bi bi-box-seam"></i> Productos</button>
 </a>
 
 <a href="ventas/listar.php">
-<button>Ventas</button>
+<button><i class="bi bi-cash-stack"></i> Ventas</button>
+</a>
+
+<a href="../index.php">
+<button><i class="bi bi-arrow-left"></i> Volver a la tienda</button>
 </a>
 
 <a href="../auth/logout.php">
-<button>Cerrar sesión</button>
+<button><i class="bi bi-box-arrow-right"></i> Cerrar sesión</button>
 </a>
 
 </div>

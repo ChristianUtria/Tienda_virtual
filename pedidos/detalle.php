@@ -1,9 +1,30 @@
 <?php
 
-include "../../config/seguridad.php";
-include "../../config/conexion.php";
+session_start();
 
+include "../config/conexion.php";
+
+if(!isset($_SESSION["id"])){
+
+    header("Location: ../auth/login.php");
+    exit();
+
+}
+
+$usuario = $_SESSION["id"];
 $id = $_GET["id"];
+
+$sqlVenta = "SELECT * FROM ventas WHERE id='$id' AND usuario_id='$usuario'";
+$resultadoVenta = mysqli_query($conexion, $sqlVenta);
+
+if(mysqli_num_rows($resultadoVenta) == 0){
+
+    header("Location: historial.php");
+    exit();
+
+}
+
+$venta = mysqli_fetch_assoc($resultadoVenta);
 
 $sql = "SELECT
 
@@ -34,15 +55,21 @@ $resultado = mysqli_query($conexion, $sql);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<title>Detalle venta</title>
+<title>Detalle de compra</title>
 
-<link rel="stylesheet" href="../../assets/css/estilos_detalle_venta.css">
+<link rel="stylesheet" href="../assets/css/estilos_detalle_pedido.css">
 
 </head>
 
 <body>
 
-<h1><i class="bi bi-receipt"></i> Detalle de la venta</h1>
+<h1><i class="bi bi-receipt"></i> Detalle de la compra #<?php echo $venta["id"]; ?></h1>
+
+<p class="texto_fecha">
+
+Fecha: <?php echo $venta["fecha"]; ?>
+
+</p>
 
 <table>
 
@@ -73,11 +100,17 @@ $resultado = mysqli_query($conexion, $sql);
 
 </table>
 
+<p class="texto_total">
+
+Total: $<?php echo number_format($venta["total"]); ?>
+
+</p>
+
 <br>
 
-<a href="listar.php">
+<a href="historial.php">
 
-<button><i class="bi bi-arrow-left"></i> Volver</button>
+<button><i class="bi bi-arrow-left"></i> Volver a mis compras</button>
 
 </a>
 

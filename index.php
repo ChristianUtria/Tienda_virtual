@@ -5,6 +5,8 @@ session_start();
 include "config/conexion.php";
 
 
+$buscar = isset($_GET["buscar"]) ? trim($_GET["buscar"]) : "";
+
 $sql = "SELECT 
 productos.*,
 categorias.nombre AS categoria
@@ -13,7 +15,17 @@ FROM productos
 
 INNER JOIN categorias
 
-ON productos.categoria_id = categorias.id";
+ON productos.categoria_id = categorias.id
+
+WHERE productos.stock > 0";
+
+if(!empty($buscar)){
+
+    $buscarEscapado = mysqli_real_escape_string($conexion, $buscar);
+
+    $sql .= " AND productos.nombre LIKE '%$buscarEscapado%'";
+
+}
 
 
 $resultado = mysqli_query($conexion,$sql);
@@ -30,111 +42,12 @@ $resultado = mysqli_query($conexion,$sql);
 
 <meta charset="UTF-8">
 
-<title></title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<title>Tienda Online</title>
 
 
-<style>
-
-
-body{
-
-    font-family: Arial;
-    background:#f4f4f4;
-    margin:0;
-
-}
-
-
-header{
-
-    background:#111;
-    color:white;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-
-}
-
-
-header a{
-
-    color:white;
-    text-decoration:none;
-    margin-left:15px;
-
-}
-
-
-
-.contenedor{
-
-    display:flex;
-    flex-wrap:wrap;
-    padding:20px;
-
-}
-
-
-
-.producto{
-
-
-    background:white;
-
-    width:250px;
-
-    margin:15px;
-
-    padding:20px;
-
-    border-radius:10px;
-
-    box-shadow:0 0 10px #ccc;
-
-
-}
-
-
-
-.producto h2{
-
-    color:#333;
-
-}
-
-
-
-.precio{
-
-    color:green;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-}
-
-
-
-button{
-
-    background:#111;
-
-    color:white;
-
-    border:none;
-
-    padding:10px;
-
-    cursor:pointer;
-
-    border-radius:5px;
-
-}
-
-
-
-</style>
+<link rel="stylesheet" href="assets/css/estilos_inicio.css">
 
 
 </head>
@@ -149,12 +62,17 @@ button{
 
 
 <h1>
-Mi Tienda
+<i class="bi bi-cart3"></i> Mi Tienda
 </h1>
 
 
 
 <div>
+
+
+<a href="carrito/ver.php" class="enlace_carrito" title="Ver carrito">
+<i class="bi bi-cart3"></i>
+</a>
 
 
 <?php if(isset($_SESSION["id"])){ ?>
@@ -164,8 +82,13 @@ Hola
 <?php echo $_SESSION["nombre"]; ?>
 
 
+<a href="pedidos/historial.php">
+<i class="bi bi-clock-history"></i> Mis compras
+</a>
+
+
 <a href="auth/logout.php">
-Cerrar sesión
+<i class="bi bi-box-arrow-right"></i> Cerrar sesión
 </a>
 
 
@@ -173,12 +96,12 @@ Cerrar sesión
 
 
 <a href="auth/login.php">
-Login
+<i class="bi bi-key"></i> Login
 </a>
 
 
 <a href="auth/registro.php">
-Registrarse
+<i class="bi bi-pencil-square"></i> Registrarse
 </a>
 
 
@@ -195,16 +118,61 @@ Registrarse
 
 
 
+<div class="caja_buscador">
+
+<form method="GET" action="index.php" style="display:flex;width:100%;max-width:400px;">
+
+<input
+type="text"
+name="buscar"
+placeholder="Buscar producto..."
+value="<?php echo htmlspecialchars($buscar); ?>">
+
+<button type="submit">
+<i class="bi bi-search"></i>
+</button>
+
+</form>
+
+</div>
+
+
 <h2 style="text-align:center">
 
-Productos disponibles
+<i class="bi bi-box-seam"></i> Productos disponibles
 
 </h2>
 
+<?php if(!empty($buscar)){ ?>
+
+<p style="text-align:center">
+
+Resultados para: "<?php echo htmlspecialchars($buscar); ?>"
+&nbsp;
+<a href="index.php">
+<i class="bi bi-x-circle"></i> Quitar filtro
+</a>
+
+</p>
+
+<?php } ?>
 
 
 
-<div class="contenedor">
+
+<div class="contenedor_productos">
+
+
+
+<?php if(mysqli_num_rows($resultado) == 0){ ?>
+
+<p style="width:100%;text-align:center;padding:30px;">
+
+No se encontraron productos.
+
+</p>
+
+<?php } ?>
 
 
 
@@ -212,7 +180,7 @@ Productos disponibles
 
 
 
-<div class="producto">
+<div class="tarjeta_producto">
 
 
 <h2>
@@ -244,7 +212,7 @@ Categoría:
 
 
 
-<p class="precio">
+<p class="precio_producto">
 
 $
 
@@ -270,7 +238,7 @@ Stock:
 
 <button>
 
-Ver producto
+<i class="bi bi-eye"></i> Ver producto
 
 </button>
 

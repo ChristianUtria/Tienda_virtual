@@ -62,94 +62,19 @@ if(isset($_POST["login"])){
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Iniciar sesión</title>
 
-<style>
-
-body{
-
-    font-family: Arial;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
-}
-
-.login{
-
-    width:350px;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-
-}
-
-h1{
-
-    text-align:center;
-
-}
-
-input{
-
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    box-sizing:border-box;
-
-}
-
-button{
-
-    width:100%;
-    padding:10px;
-    margin-top:20px;
-    background:#111;
-    color:white;
-    border:none;
-    cursor:pointer;
-
-}
-
-button:hover{
-
-    background:#333;
-
-}
-
-.error{
-
-    color:red;
-    text-align:center;
-    margin-bottom:15px;
-
-}
-
-.registro{
-
-    text-align:center;
-    margin-top:20px;
-
-}
-
-a{
-
-    text-decoration:none;
-
-}
-
-</style>
+<link rel="stylesheet" href="../assets/css/estilos_iniciar_sesion.css">
 
 </head>
 
 <body>
 
-<div class="login">
+<div class="caja_iniciar_sesion">
 
-<h1>Iniciar sesión</h1>
+<h1><i class="bi bi-key"></i> Iniciar sesión</h1>
 
 <?php
 
@@ -176,13 +101,13 @@ placeholder="Contraseña">
 
 <button type="submit" name="login">
 
-Entrar
+<i class="bi bi-box-arrow-in-right"></i> Entrar
 
 </button>
 
 </form>
 
-<div class="registro">
+<div class="seccion_crear_cuenta">
 
 ¿No tienes una cuenta?
 
@@ -190,7 +115,17 @@ Entrar
 
 <a href="registro.php">
 
-Crear cuenta
+<i class="bi bi-pencil-square"></i> Crear cuenta
+
+</a>
+
+</div>
+
+<div class="seccion_crear_cuenta">
+
+<a href="../index.php">
+
+<i class="bi bi-arrow-left"></i> Volver a la tienda
 
 </a>
 

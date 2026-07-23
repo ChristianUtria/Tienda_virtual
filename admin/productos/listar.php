@@ -27,83 +27,35 @@ $resultado = mysqli_query($conexion,$sql);
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Productos</title>
 
-<style>
-
-body{
-
-font-family:Arial;
-
-margin:30px;
-
-background:#f4f4f4;
-
-}
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-background:white;
-
-}
-
-th{
-
-background:#222;
-
-color:white;
-
-padding:12px;
-
-}
-
-td{
-
-padding:12px;
-
-border-bottom:1px solid #ddd;
-
-}
-
-button{
-
-padding:8px 15px;
-
-cursor:pointer;
-
-}
-
-a{
-
-text-decoration:none;
-
-}
-
-</style>
+<link rel="stylesheet" href="../../assets/css/estilos_lista_productos.css">
 
 </head>
 
 <body>
 
-<h1>Productos</h1>
+<h1><i class="bi bi-box-seam"></i> Productos</h1>
 
 <a href="crear.php">
 
 <button>
 
-Nuevo producto
+<i class="bi bi-plus-lg"></i> Nuevo producto
 
 </button>
 
-<a class="volver" href="../dashboard.php">
-
-<button>Volver al panel</button>
-
 </a>
+
+<a href="../dashboard.php">
+
+<button>
+
+<i class="bi bi-arrow-left"></i> Volver al panel
+
+</button>
 
 </a>
 
@@ -147,7 +99,7 @@ Nuevo producto
 
 <a href="editar.php?id=<?php echo $producto["id"]; ?>">
 
-Editar
+<i class="bi bi-pencil"></i> Editar
 
 </a>
 
@@ -157,7 +109,7 @@ Editar
 
 <a href="eliminar.php?id=<?php echo $producto["id"]; ?>">
 
-Eliminar
+<i class="bi bi-trash"></i> Eliminar
 
 </a>
 

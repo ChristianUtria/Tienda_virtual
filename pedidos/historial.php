@@ -1,20 +1,27 @@
 <?php
 
-include "../../config/seguridad.php";
-include "../../config/conexion.php";
+session_start();
+
+include "../config/conexion.php";
+
+if(!isset($_SESSION["id"])){
+
+    header("Location: ../auth/login.php");
+    exit();
+
+}
+
+$usuario = $_SESSION["id"];
 
 $sql = "SELECT
 
 ventas.id,
 ventas.fecha,
-ventas.total,
-usuarios.nombre
+ventas.total
 
 FROM ventas
 
-INNER JOIN usuarios
-
-ON ventas.usuario_id = usuarios.id
+WHERE ventas.usuario_id='$usuario'
 
 ORDER BY ventas.id DESC";
 
@@ -32,30 +39,39 @@ $resultado = mysqli_query($conexion, $sql);
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-<title>Ventas</title>
+<title>Mis compras</title>
 
-<link rel="stylesheet" href="../../assets/css/estilos_lista_ventas.css">
+<link rel="stylesheet" href="../assets/css/estilos_historial_compras.css">
 
 </head>
 
 <body>
 
-<h1><i class="bi bi-cash-stack"></i> Ventas</h1>
+<h1><i class="bi bi-clock-history"></i> Mis compras</h1>
 
-<a href="../dashboard.php">
+<a href="../index.php">
 
-<button><i class="bi bi-arrow-left"></i> Volver al panel</button>
+<button><i class="bi bi-arrow-left"></i> Volver a la tienda</button>
 
 </a>
 
 <br><br>
+
+<?php if(mysqli_num_rows($resultado) == 0){ ?>
+
+<p class="mensaje_vacio">
+
+Todavía no has realizado ninguna compra.
+
+</p>
+
+<?php }else{ ?>
 
 <table>
 
 <tr>
 
 <th>ID</th>
-<th>Cliente</th>
 <th>Fecha</th>
 <th>Total</th>
 <th>Detalle</th>
@@ -67,8 +83,6 @@ $resultado = mysqli_query($conexion, $sql);
 <tr>
 
 <td><?php echo $venta["id"]; ?></td>
-
-<td><?php echo $venta["nombre"]; ?></td>
 
 <td><?php echo $venta["fecha"]; ?></td>
 
@@ -89,6 +103,8 @@ $resultado = mysqli_query($conexion, $sql);
 <?php } ?>
 
 </table>
+
+<?php } ?>
 
 </body>
 

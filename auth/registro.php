@@ -64,102 +64,19 @@ if(isset($_POST["registrar"])){
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Crear cuenta</title>
 
-<style>
-
-body{
-
-    font-family: Arial;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
-}
-
-.registro{
-
-    width:350px;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-
-}
-
-h1{
-
-    text-align:center;
-
-}
-
-input{
-
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    box-sizing:border-box;
-
-}
-
-button{
-
-    width:100%;
-    padding:10px;
-    margin-top:20px;
-    background:#111;
-    color:white;
-    border:none;
-    cursor:pointer;
-
-}
-
-button:hover{
-
-    background:#333;
-
-}
-
-.error{
-
-    color:red;
-    text-align:center;
-    margin-bottom:15px;
-
-}
-
-.success{
-
-    color:green;
-    text-align:center;
-    margin-bottom:15px;
-
-}
-
-.login{
-
-    text-align:center;
-    margin-top:20px;
-
-}
-
-a{
-
-    text-decoration:none;
-
-}
-
-</style>
+<link rel="stylesheet" href="../assets/css/estilos_crear_cuenta.css">
 
 </head>
 
 <body>
 
-<div class="registro">
+<div class="caja_crear_cuenta">
 
-<h1>Crear cuenta</h1>
+<h1><i class="bi bi-pencil-square"></i> Crear cuenta</h1>
 
 <?php
 
@@ -192,13 +109,13 @@ placeholder="Contraseña">
 
 <button type="submit" name="registrar">
 
-Registrarse
+<i class="bi bi-check-circle"></i> Registrarse
 
 </button>
 
 </form>
 
-<div class="login">
+<div class="seccion_iniciar_sesion">
 
 ¿Ya tienes una cuenta?
 
@@ -206,7 +123,17 @@ Registrarse
 
 <a href="login.php">
 
-Iniciar sesión
+<i class="bi bi-key"></i> Iniciar sesión
+
+</a>
+
+</div>
+
+<div class="seccion_iniciar_sesion">
+
+<a href="../index.php">
+
+<i class="bi bi-arrow-left"></i> Volver a la tienda
 
 </a>
 

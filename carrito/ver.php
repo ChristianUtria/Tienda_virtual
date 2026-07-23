@@ -18,6 +18,7 @@ carrito.id,
 carrito.cantidad,
 productos.nombre,
 productos.precio,
+productos.stock,
 (productos.precio * carrito.cantidad) AS subtotal
 
 FROM carrito
@@ -42,69 +43,27 @@ $total = 0;
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Carrito</title>
 
-<style>
-
-body{
-
-    font-family:Arial;
-    background:#f5f5f5;
-    margin:30px;
-
-}
-
-table{
-
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-
-}
-
-th{
-
-    background:#222;
-    color:white;
-    padding:12px;
-
-}
-
-td{
-
-    padding:12px;
-    border-bottom:1px solid #ddd;
-
-}
-
-.total{
-
-    font-size:22px;
-    margin-top:20px;
-    font-weight:bold;
-
-}
-
-a{
-
-    text-decoration:none;
-
-}
-
-button{
-
-    padding:10px;
-    cursor:pointer;
-
-}
-
-</style>
+<link rel="stylesheet" href="../assets/css/estilos_carrito.css">
 
 </head>
 
 <body>
 
-<h1>Mi carrito</h1>
+<h1><i class="bi bi-cart3"></i> Mi carrito</h1>
+
+<?php if(isset($_SESSION["carrito_msg"])){ ?>
+
+<p style="color:red;font-weight:bold;">
+
+<?php echo $_SESSION["carrito_msg"]; unset($_SESSION["carrito_msg"]); ?>
+
+</p>
+
+<?php } ?>
 
 <table>
 
@@ -136,7 +95,17 @@ $total += $fila["subtotal"];
 
 <td>$<?php echo number_format($fila["precio"]); ?></td>
 
-<td><?php echo $fila["cantidad"]; ?></td>
+<td>
+
+<?php echo $fila["cantidad"]; ?>
+
+<?php if($fila["cantidad"] > $fila["stock"]){ ?>
+
+<br><small style="color:red;">Solo quedan <?php echo $fila["stock"]; ?> en stock</small>
+
+<?php } ?>
+
+</td>
 
 <td>$<?php echo number_format($fila["subtotal"]); ?></td>
 
@@ -144,7 +113,7 @@ $total += $fila["subtotal"];
 
 <a href="eliminar.php?id=<?php echo $fila["id"]; ?>">
 
-<button>Eliminar</button>
+<button><i class="bi bi-trash"></i> Eliminar</button>
 
 </a>
 
@@ -156,7 +125,7 @@ $total += $fila["subtotal"];
 
 </table>
 
-<p class="total">
+<p class="texto_total">
 
 Total:
 $<?php echo number_format($total); ?>
@@ -167,13 +136,13 @@ $<?php echo number_format($total); ?>
 
 <a href="../index.php">
 
-<button>Seguir comprando</button>
+<button><i class="bi bi-arrow-left"></i> Seguir comprando</button>
 
 </a>
 
 <a href="comprar.php">
 
-<button>Finalizar compra</button>
+<button><i class="bi bi-check-circle"></i> Finalizar compra</button>
 
 </a>
 

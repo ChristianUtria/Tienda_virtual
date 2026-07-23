@@ -6,7 +6,6 @@ include "../../config/conexion.php";
 $mensaje = "";
 $tipo = "";
 
-// Obtener categorías
 $sqlCategorias = "SELECT * FROM categorias";
 $categorias = mysqli_query($conexion, $sqlCategorias);
 
@@ -73,100 +72,19 @@ if(isset($_POST["guardar"])){
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Nuevo Producto</title>
 
-<style>
-
-body{
-
-    font-family:Arial;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
-}
-
-.formulario{
-
-    width:450px;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-
-}
-
-h1{
-
-    text-align:center;
-    margin-bottom:20px;
-
-}
-
-input,
-textarea,
-select{
-
-    width:100%;
-    padding:10px;
-    margin-top:12px;
-    box-sizing:border-box;
-
-}
-
-textarea{
-
-    resize:vertical;
-    height:100px;
-
-}
-
-button{
-
-    width:100%;
-    padding:12px;
-    margin-top:20px;
-    background:#111;
-    color:white;
-    border:none;
-    cursor:pointer;
-
-}
-
-button:hover{
-
-    background:#333;
-
-}
-
-.error{
-
-    color:red;
-    text-align:center;
-    margin-bottom:15px;
-
-}
-
-a{
-
-    text-decoration:none;
-    display:block;
-    text-align:center;
-    margin-top:20px;
-
-}
-
-</style>
+<link rel="stylesheet" href="../../assets/css/estilos_nuevo_producto.css">
 
 </head>
 
 <body>
 
-<div class="formulario">
+<div class="caja_formulario">
 
-<h1>Nuevo Producto</h1>
+<h1><i class="bi bi-plus-lg"></i> Nuevo Producto</h1>
 
 <?php
 
@@ -245,7 +163,7 @@ if(isset($categoria) && $categoria == $cat["id"]){
 type="submit"
 name="guardar">
 
-Guardar producto
+<i class="bi bi-save"></i> Guardar producto
 
 </button>
 
@@ -253,7 +171,7 @@ Guardar producto
 
 <a href="listar.php">
 
-Volver al listado
+<i class="bi bi-arrow-left"></i> Volver al listado
 
 </a>
 

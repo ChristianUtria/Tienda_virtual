@@ -42,7 +42,9 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 
     if ($fila["cantidad"] > $fila["stock"]) {
 
-        die("No hay suficiente stock para el producto: " . $fila["nombre"]);
+        $_SESSION["carrito_msg"] = "No hay suficiente stock para el producto: " . $fila["nombre"] . ". Ajusta o elimina ese producto del carrito.";
+        header("Location: ver.php");
+        exit();
 
     }
 

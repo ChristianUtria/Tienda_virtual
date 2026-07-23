@@ -1,0 +1,59 @@
+body{
+
+    font-family:Arial;
+    background:#f4f4f4;
+    margin:30px;
+
+}
+
+h1{
+
+    margin-bottom:30px;
+
+}
+
+.contenedor_tarjetas{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+
+}
+
+.tarjeta_resumen{
+
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.15);
+    text-align:center;
+
+}
+
+.numero_total{
+
+    font-size:40px;
+    font-weight:bold;
+    margin-top:15px;
+
+}
+
+.menu_opciones{
+
+    margin-top:40px;
+
+}
+
+.menu_opciones a{
+
+    text-decoration:none;
+    margin-right:10px;
+
+}
+
+button{
+
+    padding:10px 20px;
+    cursor:pointer;
+
+}

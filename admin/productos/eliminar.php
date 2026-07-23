@@ -12,7 +12,6 @@ if(!isset($_GET["id"])){
 
 $id = $_GET["id"];
 
-// Verificar que el producto exista
 $sql = "SELECT * FROM productos WHERE id='$id'";
 $resultado = mysqli_query($conexion, $sql);
 

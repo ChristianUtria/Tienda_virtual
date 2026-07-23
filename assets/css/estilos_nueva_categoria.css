@@ -1,0 +1,50 @@
+body{
+
+    font-family:Arial;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+
+}
+
+.caja_formulario{
+
+    width:350px;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+
+}
+
+input{
+
+    width:100%;
+    padding:10px;
+    margin-top:15px;
+    box-sizing:border-box;
+
+}
+
+button{
+
+    width:100%;
+    padding:10px;
+    margin-top:20px;
+    background:#111;
+    color:white;
+    border:none;
+    cursor:pointer;
+
+}
+
+a{
+
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    text-decoration:none;
+
+}

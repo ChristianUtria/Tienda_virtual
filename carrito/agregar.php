@@ -14,9 +14,25 @@ if(!isset($_SESSION["id"])){
 $usuario = $_SESSION["id"];
 $producto = $_GET["id"];
 
-/*
-¿Ya existe el producto en el carrito?
-*/
+$sqlStock = "SELECT stock FROM productos WHERE id='$producto'";
+$resultadoStock = mysqli_query($conexion, $sqlStock);
+
+if(mysqli_num_rows($resultadoStock) == 0){
+
+    header("Location: ../index.php");
+    exit();
+
+}
+
+$stockDisponible = mysqli_fetch_assoc($resultadoStock)["stock"];
+
+if($stockDisponible <= 0){
+
+    $_SESSION["carrito_msg"] = "Este producto está agotado.";
+    header("Location: ../productos/detalle.php?id=$producto");
+    exit();
+
+}
 
 $sql = "SELECT * FROM carrito
 WHERE usuario_id='$usuario'
@@ -25,6 +41,16 @@ AND producto_id='$producto'";
 $resultado = mysqli_query($conexion,$sql);
 
 if(mysqli_num_rows($resultado)>0){
+
+    $cantidadActual = mysqli_fetch_assoc($resultado)["cantidad"];
+
+    if($cantidadActual + 1 > $stockDisponible){
+
+        $_SESSION["carrito_msg"] = "No hay más stock disponible de este producto (máximo $stockDisponible).";
+        header("Location: ../productos/detalle.php?id=$producto");
+        exit();
+
+    }
 
     mysqli_query($conexion,
 

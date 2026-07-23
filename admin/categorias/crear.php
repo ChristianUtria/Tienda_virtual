@@ -31,70 +31,19 @@ if(isset($_POST["guardar"])){
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Nueva categoría</title>
 
-<style>
-
-body{
-
-    font-family:Arial;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
-}
-
-.formulario{
-
-    width:350px;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-
-}
-
-input{
-
-    width:100%;
-    padding:10px;
-    margin-top:15px;
-    box-sizing:border-box;
-
-}
-
-button{
-
-    width:100%;
-    padding:10px;
-    margin-top:20px;
-    background:#111;
-    color:white;
-    border:none;
-    cursor:pointer;
-
-}
-
-a{
-
-    display:block;
-    text-align:center;
-    margin-top:20px;
-    text-decoration:none;
-
-}
-
-</style>
+<link rel="stylesheet" href="../../assets/css/estilos_nueva_categoria.css">
 
 </head>
 
 <body>
 
-<div class="formulario">
+<div class="caja_formulario">
 
-<h2>Nueva categoría</h2>
+<h2><i class="bi bi-plus-lg"></i> Nueva categoría</h2>
 
 <form method="POST">
 
@@ -108,7 +57,7 @@ required>
 type="submit"
 name="guardar">
 
-Guardar
+<i class="bi bi-save"></i> Guardar
 
 </button>
 
@@ -116,7 +65,7 @@ Guardar
 
 <a href="listar.php">
 
-Volver
+<i class="bi bi-arrow-left"></i> Volver
 
 </a>
 

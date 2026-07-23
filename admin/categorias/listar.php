@@ -17,73 +17,29 @@ $resultado = mysqli_query($conexion,$sql);
 
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <title>Categorías</title>
 
-<style>
-
-body{
-
-    font-family:Arial;
-    background:#f5f5f5;
-    margin:30px;
-
-}
-
-table{
-
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-
-}
-
-th{
-
-    background:#222;
-    color:white;
-    padding:12px;
-
-}
-
-td{
-
-    padding:12px;
-    border-bottom:1px solid #ddd;
-
-}
-
-a{
-
-    text-decoration:none;
-
-}
-
-button{
-
-    padding:8px 15px;
-    cursor:pointer;
-
-}
-
-</style>
+<link rel="stylesheet" href="../../assets/css/estilos_lista_categorias.css">
 
 </head>
 
 <body>
 
-<h1>Categorías</h1>
+<h1><i class="bi bi-tag"></i> Categorías</h1>
 
 <br>
 
 <a href="crear.php">
 
-<button>Nueva categoría</button>
+<button><i class="bi bi-plus-lg"></i> Nueva categoría</button>
 
 </a>
 
-<a class="volver" href="../dashboard.php">
+<a href="../dashboard.php">
 
-<button>Volver al panel</button>
+<button><i class="bi bi-arrow-left"></i> Volver al panel</button>
 
 </a>
 
@@ -115,7 +71,7 @@ button{
 
 <a href="editar.php?id=<?php echo $categoria["id"]; ?>">
 
-Editar
+<i class="bi bi-pencil"></i> Editar
 
 </a>
 
@@ -125,7 +81,7 @@ Editar
 
 <a href="eliminar.php?id=<?php echo $categoria["id"]; ?>">
 
-Eliminar
+<i class="bi bi-trash"></i> Eliminar
 
 </a>
 
